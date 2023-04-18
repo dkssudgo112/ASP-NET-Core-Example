@@ -1,0 +1,17 @@
+﻿@page "/logout"
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedLocalStorage LocalStorage
+@inject NavigationManager NavigationManager
+
+<h3>Logging Out...</h3>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await LocalStorage.DeleteAsync("userId");
+        StateHasChanged();
+        NavigationManager.NavigateTo("/");
+        StateHasChanged();
+    }
+}

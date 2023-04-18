@@ -1,0 +1,49 @@
+﻿@page "/login"
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedLocalStorage LocalStorage
+@inject NavigationManager NavigationManager
+
+<h3>Login</h3>
+
+<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <InputText id="username" class="form-control" @bind-Value="loginModel.Username" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="loginModel.Password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+
+    private async Task HandleLogin()
+    {
+        // 로그인 로직 구현
+        if (loginModel.Username == "admin" && loginModel.Password == "password")
+        {
+            await LocalStorage.SetAsync("userId", "1");
+            StateHasChanged();
+            NavigationManager.NavigateTo("/");
+            StateHasChanged();
+        }
+        else
+        {
+            // 에러 메시지 표시
+        }
+    }
+
+    public class LoginModel
+    {
+        public string Username { get; set; }
+        public string Password { get; set; }
+    }
+}

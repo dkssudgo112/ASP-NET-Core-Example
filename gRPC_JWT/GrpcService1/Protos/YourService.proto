@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService1";
+
+package yourservice;
+
+// 서비스 정의
+service YourService {
+    rpc YourMethod (YourRequest) returns (YourResponse);
+    rpc GetToken (TokenRequest) returns (TokenResponse);
+}
+
+// 요청 메시지 정의
+message YourRequest {
+    string request_data = 1;
+}
+
+// 응답 메시지 정의
+message YourResponse {
+    string response_data = 1;
+}
+
+message TokenRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message TokenResponse {
+    string token = 1;
+}

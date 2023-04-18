@@ -1,0 +1,96 @@
+﻿@page "/newmenu"
+
+<div class="container-fluid">
+
+    @*페이지 제목 구성하는 부분*@
+    <h1 class="mt-4">Gallery</h1>
+
+    <br />
+
+    <div class="row">
+
+        <!-- 카드 1-->
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="/image/kim1.jpg" alt="" width="200" height="200"></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">김1</a>
+                    </h4>
+                    <p class="card-text">
+                        김1
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p>COUNT : @cat1LikeCount</p>
+                    <button class="btn btn-danger" @onclick="@(() => IncrementCount(1))">
+                        <i class="fa fa-heart"></i> 좋아요
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 카드 2 -->
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="/image/kim1.jpg" alt="" width="200" height="200"></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">김2</a>
+                    </h4>
+                    <p class="card-text">
+                        김2
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p>COUNT : @cat2LikeCount</p>
+                    <button class="btn btn-danger" @onclick="@(() => IncrementCount(2))">
+                        <i class="fa fa-heart"></i> 좋아요
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 카드 3 -->
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="/image/kim1.jpg" alt="" width="200" height="200"></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">김3</a>
+                    </h4>
+                    <p class="card-text">
+                        김3
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p>COUNT : @cat3LikeCount</p>
+                    <button class="btn btn-danger" @onclick="@(() => IncrementCount(3))">
+                        <i class="fa fa-heart"></i> 좋아요
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*자바스크립트를 대신하는 C# 코드 부분*@
+
+@code {
+
+    int cat1LikeCount = 0;
+    int cat2LikeCount = 0;
+    int cat3LikeCount = 0;
+
+    // 버튼 클릭시 좋아요 카운트가 올라간다.
+    private void IncrementCount(int catNum)
+    {
+        if (catNum == 1)
+            cat1LikeCount++;
+        else if (catNum == 2)
+            cat2LikeCount++;
+        else if (catNum == 3)
+            cat3LikeCount++;
+    }
+}

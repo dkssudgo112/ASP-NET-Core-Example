@@ -1,0 +1,38 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcSessionService";
+
+package grpcsession;
+
+// Request message for the Login method
+message LoginRequest
+{
+  string username = 1;
+  string password = 2;
+}
+
+// Response message for the Login method
+message LoginResponse
+{
+  string sessionId = 1;
+}
+
+// Request message for the YourMethod
+message YourMethodRequest
+{
+  string sessionId = 1;
+  string requestData = 2;
+}
+
+// Response message for the YourMethod
+message YourMethodResponse
+{
+  string responseData = 1;
+}
+
+// The gRPC session service definition
+service GrpcSession
+{
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc YourMethod(YourMethodRequest) returns (YourMethodResponse);
+}
